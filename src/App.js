@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  let [count, setCount] = useState(0);
+  let [day, setDay] = useState(true);
+
+  const changeTimeOfTheDay = () => {
+    setDay(!day);
+  };
+
+  const incrementCounter = () => {
+    setCount(++count);
+  };
+
+  const decrementCounter = () => {
+    setCount(--count);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`App box ${day ? "daytime" : "nighttime"}`}>
+      <h1>Good {day ? "Morning" : "Night"}</h1>
+      <button onClick={() => changeTimeOfTheDay()}>
+        Change to {day ? "Night" : "Day"}
+      </button>
+      <h2>Current Count: {count}</h2>
+      <button onClick={() => incrementCounter()}>+</button>
+      <button onClick={() => decrementCounter()}>-</button>
     </div>
   );
 }
